@@ -1,0 +1,743 @@
+$hover-color-light-blue: #8acfe5;
+$dark-blue: #011827;
+$red-background: #e3170a;
+$dark-mode-background: #b6bdb5;
+
+@mixin link-base-styles {
+	text-decoration: none;
+	color: inherit;
+	cursor: pointer;
+}
+
+@mixin btn-styles {
+	font-weight: 700;
+	font-size: 1.5rem;
+	border: none;
+	border-radius: 0.25rem;
+	padding: 1rem;
+	width: 308px;
+	height: 66px;
+	box-sizing: border-box;
+	margin: 2rem 0;
+	text-align: center;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+@mixin footer-list {
+	list-style-type: none;
+	display: flex;
+	flex-direction: column;
+	padding: 0;
+	margin-top: 0.5rem;
+}
+
+@mixin dark-mode-button {
+	@media (prefers-color-scheme: dark) {
+		color: $hover-color-light-blue;
+		border: 2px solid $hover-color-light-blue;
+		background-color: white;
+	}
+}
+
+* {
+	font-family: 'Roboto', Arial, sans-serif;
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+html,
+body {
+	height: 100%;
+	overflow-x: hidden;
+}
+
+/*HEADER*/
+.header {
+	background-color: $dark-blue;
+	color: white;
+	top: 0;
+	position: sticky;
+	z-index: 2;
+	display: grid;
+	max-height: 13.5rem;
+	height: 9rem;
+	margin: 0;
+
+	&__top {
+		display: flex;
+		padding: 1rem;
+		align-items: center;
+
+		&-logo {
+			width: 128px;
+			height: 82px;
+			margin-right: 1rem;
+		}
+
+		&-title {
+			font-weight: 700;
+			width: 5rem;
+			font-size: 1.3rem;
+			padding: 0 0.2rem 0 0.7rem;
+			box-sizing: content-box;
+			overflow-wrap: break-word;
+
+			@media screen and (min-width: 600px) {
+				font-size: clamp(1.3rem, 4vw + 0.6rem, 2.5rem);
+				overflow-wrap: normal;
+				flex: 1 1 auto;
+				margin-top: 38px;
+			}
+		}
+	}
+
+	&__menu {
+		&-list {
+			display: none;
+			list-style: none;
+			padding: 0;
+
+			@media screen and (min-width: 600px) {
+				display: flex;
+				justify-content: space-evenly;
+				padding: 0;
+			}
+		}
+
+		&-item {
+			@media screen and (min-width: 600px) {
+				font-weight: 700;
+				font-size: 1.5rem;
+			}
+		}
+
+		&-link {
+
+			&:hover,
+			&:focus,
+			&:active {
+				color: $hover-color-light-blue;
+			}
+
+			@include link-base-styles;
+
+		}
+
+		@media screen and (min-width: 900px) {
+			margin: 1rem 7rem 0 7rem;
+		}
+	}
+
+	@media screen and (min-width: 600px) {
+		height: 13.5rem;
+	}
+}
+
+.main {
+	background-color: white;
+	color: black;
+	font-size: 1.5rem;
+	display: grid;
+
+	&__img {
+		display: block;
+		width: 100%;
+		height: 17.125rem;
+		object-fit: cover;
+
+		@media screen and (min-width: 600px) {
+			height: 29.25rem;
+		}
+	}
+
+	@media (prefers-color-scheme: dark) {
+		background-color: $dark-mode-background;
+	}
+}
+
+// button block
+.button-block {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	max-inline-size: 100vw;
+
+	&-button {
+		& {
+			@include btn-styles;
+		}
+
+		&--on-site {
+			background-color: $hover-color-light-blue;
+			color: black;
+		}
+
+		&--online {
+			text-decoration: underline;
+			color: #36769d;
+			font-size: 1rem;
+			background: none;
+			padding: 0.25rem;
+			margin: 0;
+
+			@media screen and (min-width: 600px) {
+				background-color: $red-background;
+				color: white;
+				font-weight: 700;
+				font-size: 1.5rem;
+				border-radius: 0.25rem;
+				padding: 1rem;
+				text-decoration: none;
+				margin: 2rem 0;
+			}
+		}
+	}
+
+	@media screen and (min-width: 900px) {
+		flex-direction: row;
+		justify-content: center;
+		gap: 1rem;
+		margin-top: -4.5rem;
+	}
+}
+
+/* Reviews */
+.reviews {
+	padding: 1rem;
+	box-sizing: border-box;
+	max-inline-size: 100vw;
+	margin-block: 2rem;
+
+	&__card {
+		display: flex;
+		align-items: flex-start;
+		max-width: 27.44rem;
+		height: 8.6875rem;
+
+		&--second {
+			display: none;
+		}
+
+		&-face {
+			border-radius: 50%;
+			height: 4.5rem;
+			margin-right: 1rem;
+		}
+
+		&-quote {
+			margin-bottom: 2rem;
+		}
+
+		&-text {
+			font-style: italic;
+			padding-left: 1rem;
+			margin: 0 0 0.5rem 0;
+		}
+
+		&-signature {
+			font-size: 1.125rem;
+			padding-left: 1rem;
+			margin: 0 0 2rem 0;
+		}
+	}
+
+	@media screen and (max-width: 479px) {
+		.reviews {
+			padding-bottom: 3rem;
+		}
+	}
+
+	@media screen and (min-width: 600px) {
+		&__card {
+			max-width: 32.5rem;
+			max-height: 8.8125rem;
+			padding: 0;
+			justify-self: center;
+
+			&--second {
+				display: flex;
+			}
+		}
+	}
+
+	@media screen and (min-width: 900px) {
+		display: flex;
+		justify-content: center;
+		gap: 1rem;
+
+		&__card-quote p:last-of-type {
+			max-width: 18rem;
+		}
+
+		&__card-face {
+			margin: 0;
+		}
+	}
+}
+
+/* Escape rooms block */
+.escape {
+	// margin: 3rem 0 0 0;
+	box-sizing: border-box;
+
+	&__title {
+		text-align: center;
+		font-weight: 400;
+		font-size: 2rem;
+		margin-block: 2rem;
+		padding: 0.3rem;
+	}
+
+	&__block {
+		display: grid;
+		grid-auto-flow: column;
+		gap: 2rem;
+		width: 100vw;
+		user-select: none;
+		overflow-x: scroll;
+		cursor: grab;
+		scroll-snap-type: x mandatory;
+		-webkit-overflow-scrolling: touch;
+		scrollbar-width: none;
+		-ms-overflow-style: none;
+
+		&::-webkit-scrollbar {
+			display: none;
+		}
+
+		&:active {
+			cursor: grabbing;
+		}
+	}
+
+	&__room-card {
+		display: grid;
+		grid-template-rows: 2;
+		border-radius: 0.5rem;
+		width: 363px;
+		height: 446px;
+		box-shadow: 0 0.2rem 0.5rem rgba(0, 0, 0, 0.7);
+		margin: 2rem 0;
+		box-sizing: border-box;
+
+		&:first-of-type {
+			margin-left: 3.25rem;
+		}
+
+		&:hover {
+			border: 2px solid #36769d;
+		}
+
+		& img {
+			grid-column: 1/3;
+			border-radius: 0.5rem 0.5rem 0 0;
+			inline-size: 100%;
+			height: auto;
+			object-fit: cover;
+		}
+	}
+
+	&__room-content {
+		grid-column: 1/3;
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-start;
+		align-items: flex-start;
+		padding: 0.5rem 1rem;
+		width: 100%;
+
+		&-title {
+			margin: 0;
+		}
+
+		&-small {
+			grid-column: 1/3;
+			display: flex;
+			align-items: baseline;
+
+			.escape__room-rating {
+				color: $red-background;
+			}
+
+			.escape__room-participants {
+				font-size: 14px;
+				padding-inline: 1rem;
+			}
+		}
+
+		&-text {
+			font-size: 1.125rem;
+			margin: 0;
+			padding: 0;
+			width: 100%;
+			overflow-wrap: break-word;
+		}
+	}
+
+	&__room-button {
+		@include btn-styles;
+		@include dark-mode-button;
+
+		background-color: $red-background;
+		color: white;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		grid-row: 3;
+		grid-column: 2/3;
+		border-radius: 0.5rem;
+		font-size: 1rem;
+		padding: 0 0.3rem;
+		width: 11.205rem;
+		height: 2.75rem;
+		margin: 0 1rem 0 0;
+
+		@media screen and (max-width: 479px) {
+			margin: 0 1rem 0.5rem 0;
+			max-width: 15rem;
+		}
+	}
+
+	@media screen and (max-width: 479px) {
+		&__room-card {
+			width: 300px;
+			grid-template-columns: 1fr;
+		}
+	}
+
+	@media screen and (min-width: 600px) {
+		&__room-card {
+			max-width: 363px;
+			max-height: 446px;
+		}
+
+		&__block {
+			margin-bottom: 5rem;
+		}
+	}
+
+	@media screen and (min-width: 1280px) {
+		&__block {
+			gap: 3rem;
+		}
+	}
+}
+
+//story block
+.story {
+	background-color: $dark-blue;
+	color: white;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	height: 31.25rem;
+	margin-top: 1.25rem;
+	box-sizing: border-box;
+
+	&-text {
+		font-size: 1.75rem;
+		color: white;
+		text-align: center;
+		padding: 3.5rem 1.25rem 1rem 1.25rem;
+		max-width: 39.5rem;
+		box-sizing: border-box;
+	}
+
+	&-button {
+		@include btn-styles;
+		background-color: $dark-blue;
+		border: 2px solid $hover-color-light-blue;
+		color: $hover-color-light-blue;
+
+		&:hover {
+			background-color: $hover-color-light-blue;
+			color: $dark-blue;
+		}
+
+		&--primary {
+			@include dark-mode-button;
+		}
+	}
+}
+
+/* Responsive adjustments for small screens */
+@media screen and (max-width: 479px) {
+	.story {
+		padding: 0.5rem;
+		height: auto;
+
+		&-text {
+			padding-block: 1rem;
+		}
+
+		&-button {
+			margin: 0 1rem 0.5rem 0;
+			max-width: 15rem;
+			width: auto;
+			min-width: 0;
+			height: auto;
+			white-space: nowrap;
+
+		}
+	}
+}
+
+/*play-block with photos*/
+.play {
+	display: grid;
+	margin-bottom: 3rem;
+
+	&__block {
+		display: grid;
+		grid-template-columns: 1fr;
+		grid-template-areas:
+			"img"
+			"content";
+
+		&-picture {
+			grid-area: img;
+			display: block;
+			align-self: start;
+			max-inline-size: 100%;
+			height: auto;
+
+			img {
+				grid-area: img;
+				display: block;
+				align-self: start;
+				max-inline-size: 100%;
+				height: auto;
+			}
+
+			@media screen and (min-width: 600px) {
+				width: 100%;
+
+				img {
+					max-height: 28.75rem;
+					align-self: start;
+				}
+			}
+		}
+
+		&-card {
+			grid-area: content;
+			padding: 2rem 1rem;
+			display: flex;
+			align-self: center;
+			flex-direction: column;
+			gap: 1rem;
+
+			&-title {
+				font-size: 2rem;
+				font-weight: 700;
+				margin: 0;
+
+				@media screen and (min-width: 1280px) {
+					width: 26rem;
+				}
+			}
+
+			&-text {
+				@media screen and (min-width: 1280px) {
+					width: 26rem;
+				}
+			}
+
+			&-button {
+				@include btn-styles;
+				min-width: 19.25rem;
+				display: inline-block;
+
+				&--primary {
+					background-color: $red-background;
+					color: white;
+					@include dark-mode-button;
+				}
+
+				@media screen and (max-width: 479px) {
+					width: auto;
+					min-width: 0;
+					height: auto;
+					white-space: nowrap;
+				}
+
+				@media screen and (min-width: 600px) {
+					margin: 0;
+				}
+			}
+
+			@media screen and (min-width: 600px) {
+				justify-self: center;
+				max-width: 26rem;
+			}
+
+			@media screen and (min-width: 1280px) {
+				padding: 2rem 2rem 2rem 6.75rem;
+				justify-self: start;
+			}
+		}
+
+		@media screen and (min-width: 600px) {
+			grid-template-columns: 1fr 1fr;
+			grid-template-areas: "img content";
+			align-items: start;
+			justify-items: center;
+		}
+
+		@media screen and (min-width: 600px) {
+			grid-template-columns: 1fr 1fr;
+			/* default: img left, content right */
+			grid-template-areas: "img content";
+			align-items: start;
+			justify-items: center;
+
+			/* content left, img right */
+			&.second {
+				grid-template-areas: "content img";
+			}
+		}
+	}
+
+	@media screen and (min-width: 600px) {
+		margin-bottom: 10rem;
+	}
+}
+
+/* Footer */
+.footer {
+	background-color: $dark-blue;
+	color: white;
+	display: grid;
+	width: 100%;
+	max-height: 35.375rem;
+	padding: 3rem 1.3rem;
+	font-size: 1.15rem;
+
+	&__container {
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-start;
+		align-items: flex-start;
+		padding: 0.5rem 0;
+
+		&-title {
+			font-weight: 700;
+			font-size: 1.125rem;
+			margin: 0;
+		}
+
+		&-text {
+			max-width: 27.4rem;
+			margin-top: 0.5rem;
+			margin-bottom: 1rem;
+
+			@media screen and (min-width: 600px) {
+				max-width: 26rem;
+			}
+		}
+
+		@media screen and (min-width: 600px) {
+			padding: 2.5rem 0rem;
+		}
+
+		@media screen and (min-width: 1280px) {
+			padding: 6.75rem;
+		}
+	}
+
+	&__menu {
+		margin-bottom: 2rem;
+
+		&-list {
+			@include footer-list;
+		}
+
+		&-item:nth-of-type(3) {
+			margin-bottom: 1rem;
+		}
+
+		&-link {
+			@include link-base-styles;
+			color: white;
+
+			&:hover {
+				color: $hover-color-light-blue;
+			}
+		}
+
+		@media screen and (min-width: 600px) {
+			flex: 1 1 auto;
+		}
+	}
+
+	&__details {
+		font-style: normal;
+
+		&-list {
+			@include footer-list;
+		}
+
+		&-link {
+			@include link-base-styles;
+			color: white;
+
+			&:hover {
+				color: $hover-color-light-blue;
+			}
+		}
+
+		@media screen and (min-width: 600px) {
+			flex: 1 1 auto;
+		}
+	}
+
+	@media screen and (min-width: 600px) {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-around;
+		flex-wrap: wrap;
+	}
+
+	@media screen and (min-width: 900px) {
+		height: 29rem;
+	}
+
+	@media screen and (min-width: 1280px) {
+		padding: 0;
+	}
+}
+
+/* Limit content to 1280px for desktop screens >1280, while background on header and footer remains full-bleed */
+@media screen and (min-width: 1281px) {
+	:root {
+		--site-max-inline: 1280px;
+	}
+
+	.header>*,
+	.footer>*,
+	.main,
+	.escape__block 
+
+	// .play__block,
+	// .play__block-card,
+	// .reviews,
+	// .button-block,
+	// .story-button>*,
+	// .play__block-card,
+	// .play__block-card-button 
+
+	 {
+		max-inline-size: var(--site-max-inline);
+		width: 100%;
+		margin-inline: auto;
+	}
+
+	.footer {
+		display: grid;
+		grid-auto-flow: column;
+		padding-inline: calc((100vw - 1280px) / 2);
+	}
+}
