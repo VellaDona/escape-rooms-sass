@@ -244,7 +244,7 @@ body {
 	}
 
 	@media screen and (max-width: 479px) {
-		.reviews {
+		& {
 			padding-bottom: 3rem;
 		}
 	}
@@ -719,9 +719,7 @@ body {
 	.header>*,
 	.footer>*,
 	.main,
-	.escape__block 
-
-	// .play__block,
+	.escape__block // .play__block,
 	// .play__block-card,
 	// .reviews,
 	// .button-block,
@@ -729,7 +727,7 @@ body {
 	// .play__block-card,
 	// .play__block-card-button 
 
-	 {
+		{
 		max-inline-size: var(--site-max-inline);
 		width: 100%;
 		margin-inline: auto;
