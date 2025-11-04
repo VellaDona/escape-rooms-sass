@@ -175,6 +175,13 @@ body {
     margin: 2rem 0;
   }
 }
+@media screen and (min-width: 600px) and (prefers-color-scheme: dark) {
+  .button-block-button--online {
+    color: #8acfe5;
+    border: 2px solid #8acfe5;
+    background-color: white;
+  }
+}
 @media screen and (min-width: 900px) {
   .button-block {
     -webkit-box-orient: horizontal;
