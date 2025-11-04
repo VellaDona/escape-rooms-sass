@@ -323,6 +323,9 @@ body {
 .escape__room-card:first-of-type {
   margin-left: 3.25rem;
 }
+.escape__room-card:last-of-type {
+  margin-right: 3.25rem;
+}
 .escape__room-card:hover {
   border: 2px solid #36769d;
 }

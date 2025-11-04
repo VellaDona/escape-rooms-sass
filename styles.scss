@@ -328,6 +328,10 @@ body {
 			margin-left: 3.25rem;
 		}
 
+		&:last-of-type {
+			margin-right: 3.25rem;
+		}
+
 		&:hover {
 			border: 2px solid #36769d;
 		}
