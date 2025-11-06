@@ -59,8 +59,11 @@ body {
 	color: white;
 	top: 0;
 	position: sticky;
-	z-index: 2;
-	display: grid;
+	// z-index: 2;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: flex-start;
 	max-height: 13.5rem;
 	height: 9rem;
 	margin: 0;
@@ -93,11 +96,92 @@ body {
 		}
 	}
 
+	&__burger {
+		display: block;
+		position: relative;
+		top: 1rem;
+		right: 4rem;
+		// z-index: 5;
+
+		@media screen and (min-width: 600px) {
+			display: none;
+		}
+
+		&>img {
+			color: white;
+			background-color: $dark-blue;
+			height: 32px;
+			width: 51px;
+			position: absolute;
+			top: 0;
+			left: 0;
+			transition: opacity 0.1s ease;
+		}
+
+		.burger-icon {
+			opacity: 1;
+		}
+
+		.close-icon {
+			opacity: 0;
+		}
+
+		&.active {
+			// position: fixed;
+
+			.burger-icon {
+				opacity: 0;
+			}
+
+			.close-icon {
+				opacity: 1;
+				height: 37px;
+				width: 37px;
+				// z-index: 6;
+			}
+		}
+	}
+
+
 	&__menu {
+		&.active {
+			position: fixed;
+			inset: 18px 18px;
+
+			// z-index: 3;
+			.header__burger {
+				position: absolute;
+				z-index: 10;
+			}
+
+		}
+
+		&.active::before {
+			content: "";
+			position: fixed;
+			inset: 0;
+			background: rgba(255, 255, 255, 0.5);
+		}
+
 		&-list {
 			display: none;
 			list-style: none;
 			padding: 0;
+
+			&.active {
+				position: fixed;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+				gap: 3rem;
+				font-size: 2rem;
+				font-weight: 700;
+				inset: 20px 19px;
+				background-color: $dark-blue;
+				// z-index: 4;
+			}
+
 
 			@media screen and (min-width: 600px) {
 				display: flex;
@@ -131,6 +215,11 @@ body {
 	}
 
 	@media screen and (min-width: 600px) {
+		display: grid;
+		/* all flex-properties unset */
+		flex-direction: unset;
+		justify-content: unset;
+		align-items: unset;
 		height: 13.5rem;
 	}
 }

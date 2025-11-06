@@ -18,8 +18,19 @@ body {
   color: white;
   top: 0;
   position: sticky;
-  z-index: 2;
-  display: grid;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
   max-height: 13.5rem;
   height: 9rem;
   margin: 0;
@@ -57,10 +68,81 @@ body {
     margin-top: 38px;
   }
 }
+.header__burger {
+  display: block;
+  position: relative;
+  top: 1rem;
+  right: 4rem;
+}
+@media screen and (min-width: 600px) {
+  .header__burger {
+    display: none;
+  }
+}
+.header__burger > img {
+  color: white;
+  background-color: #011827;
+  height: 32px;
+  width: 51px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  -webkit-transition: opacity 0.1s ease;
+  transition: opacity 0.1s ease;
+}
+.header__burger .burger-icon {
+  opacity: 1;
+}
+.header__burger .close-icon {
+  opacity: 0;
+}
+.header__burger.active .burger-icon {
+  opacity: 0;
+}
+.header__burger.active .close-icon {
+  opacity: 1;
+  height: 37px;
+  width: 37px;
+}
+.header__menu.active {
+  position: fixed;
+  inset: 18px 18px;
+}
+.header__menu.active .header__burger {
+  position: absolute;
+  z-index: 10;
+}
+.header__menu.active::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.5);
+}
 .header__menu-list {
   display: none;
   list-style: none;
   padding: 0;
+}
+.header__menu-list.active {
+  position: fixed;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  gap: 3rem;
+  font-size: 2rem;
+  font-weight: 700;
+  inset: 20px 19px;
+  background-color: #011827;
 }
 @media screen and (min-width: 600px) {
   .header__menu-list {
@@ -94,6 +176,18 @@ body {
 }
 @media screen and (min-width: 600px) {
   .header {
+    display: grid;
+    /* all flex-properties unset */
+    -webkit-box-orient: unset;
+    -webkit-box-direction: unset;
+        -ms-flex-direction: unset;
+            flex-direction: unset;
+    -webkit-box-pack: unset;
+        -ms-flex-pack: unset;
+            justify-content: unset;
+    -webkit-box-align: unset;
+        -ms-flex-align: unset;
+            align-items: unset;
     height: 13.5rem;
   }
 }
