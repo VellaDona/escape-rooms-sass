@@ -40,6 +40,17 @@ $dark-mode-background: #b6bdb5;
 	}
 }
 
+@mixin burger-before-after {
+	content: '';
+	background-color: white;
+	position: absolute;
+	left: 0;
+	width: 100%;
+	height: 6px;
+	border-radius: 3px;
+	transition: transform ease;
+}
+
 * {
 	font-family: 'Roboto', Arial, sans-serif;
 	box-sizing: border-box;
@@ -59,8 +70,10 @@ body {
 	color: white;
 	top: 0;
 	position: sticky;
-	z-index: 2;
-	display: grid;
+	// z-index: 2;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
 	max-height: 13.5rem;
 	height: 9rem;
 	margin: 0;
@@ -68,36 +81,113 @@ body {
 	&__top {
 		display: flex;
 		padding: 1rem;
-		align-items: center;
+		align-items: flex-start;
 
-		&-logo {
-			width: 128px;
-			height: 82px;
-			margin-right: 1rem;
+	&-logo {
+		width: 128px;
+		height: 82px;
+		margin-right: 1rem;
+	}
+
+	&-title {
+		font-weight: 700;
+		width: 5rem;
+		font-size: 1.3rem;
+		padding: 0 0.2rem 0 0.7rem;
+		box-sizing: content-box;
+		overflow-wrap: break-word;
+
+		@media screen and (min-width: 600px) {
+			font-size: clamp(1.3rem, 4vw + 0.6rem, 2.5rem);
+			overflow-wrap: normal;
+			flex: 1 1 auto;
+			margin-top: 38px;
+		}
+	}
+	}
+
+	&__burger {
+		display: block;
+		position: relative;
+		z-index: 5;
+		align-items: center;
+		justify-content: center;
+		width: 51px;
+		height: 32px;
+		margin: 1em 1rem 0 auto;
+
+		@media screen and (min-width: 600px) {
+			display: none;
 		}
 
-		&-title {
-			font-weight: 700;
-			width: 5rem;
-			font-size: 1.3rem;
-			padding: 0 0.2rem 0 0.7rem;
-			box-sizing: content-box;
-			overflow-wrap: break-word;
+		&>span {
+			top: 50%;
+			background-color: white;
+			display: block;
+			width: 100%;
+			height: 6px;
+			border-radius: 3px;
+			position: absolute;
+			transform: scale(1) translate(0, -50%);
+		}
 
-			@media screen and (min-width: 600px) {
-				font-size: clamp(1.3rem, 4vw + 0.6rem, 2.5rem);
-				overflow-wrap: normal;
-				flex: 1 1 auto;
-				margin-top: 38px;
+		&::before {
+			@include burger-before-after;
+			top: 50%;
+			transform: translateY(calc(-50% - 13px));
+		}
+
+		&::after {
+			@include burger-before-after;
+			top: 50%;
+			transform: translateY(calc(-50% + 13px));
+		}
+
+		&.active {
+			& span {
+				background-color: transparent;
+			}
+
+			&::before {
+				transform: translateY(0) rotate(-45deg);
+			}
+
+			&::after {
+				transform: translateY(0) rotate(45deg);
 			}
 		}
 	}
 
 	&__menu {
+		&.active {
+			position: fixed;
+			inset: 18px 18px;
+		}
+
+		&.active::before {
+			content: "";
+			position: fixed;
+			inset: 0;
+			background: rgba(255, 255, 255, 0.5);
+		}
+
 		&-list {
 			display: none;
 			list-style: none;
 			padding: 0;
+
+			&.active {
+				position: fixed;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+				gap: 3rem;
+				font-size: 2rem;
+				font-weight: 700;
+				inset: 20px 19px;
+				background-color: $dark-blue;
+			}
 
 			@media screen and (min-width: 600px) {
 				display: flex;
@@ -122,7 +212,6 @@ body {
 			}
 
 			@include link-base-styles;
-
 		}
 
 		@media screen and (min-width: 900px) {
@@ -131,9 +220,11 @@ body {
 	}
 
 	@media screen and (min-width: 600px) {
+		display: block;
 		height: 13.5rem;
 	}
 }
+
 
 .main {
 	background-color: white;
