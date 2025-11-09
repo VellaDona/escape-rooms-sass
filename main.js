@@ -63,11 +63,10 @@ burgerAddStyles.textContent = `
   
   @media screen and (min-width: 600px) {
     .header {
-      display: grid !important;
-      flex-direction: unset !important;
-      justify-content: unset !important;
-      align-items: unset !important;
-      height: 13.5rem !important;
+      display: grid;
+      flex-direction: unset;
+      justify-content: unset;
+      align-items: unset;
     }
   }
 
@@ -138,4 +137,4 @@ burgerAddStyles.textContent = `
 `;
 
 // add styles to <head>
-document.head.appendChild(burgerAddStyles);
+document.head.append(burgerAddStyles);
